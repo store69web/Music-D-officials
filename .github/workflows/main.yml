@@ -1,0 +1,29 @@
+name: Gemini AI Auto-Updater
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight
+  workflow_dispatch: # Allows you to run it manually
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Run Gemini Sync
+        run: python updater.py
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Gemini-AI-Bot"
+          git add .
+          git commit -m "Auto-update by Gemini AI [skip ci]" || exit 0
+          git push
