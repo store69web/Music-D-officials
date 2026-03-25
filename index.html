@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSIC-D | Premium AI Hub</title>
+    <style>
+        :root {
+            --primary-glow: #a855f7;
+            --secondary-glow: #6366f1;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #050505;
+            color: var(--text-color);
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- HIGH-QUALITY MESH GRADIENT BACKGROUND --- */
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(168, 85, 247, 0.1) 0px, transparent 50%);
+        }
+
+        /* --- LOGO WITH RADIAL PULSE & SOUNDWAVE --- */
+        .logo-wrapper {
+            position: relative;
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .channel-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            z-index: 5;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .channel-logo:hover { transform: scale(1.1) rotate(5deg); }
+
+        .pulse {
+            position: absolute;
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            background: var(--primary-glow);
+            opacity: 0.5;
+            z-index: 1;
+            animation: sonar 3s infinite ease-out;
+        }
+
+        @keyframes sonar {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* --- KINETIC 3D TYPOGRAPHY --- */
+        .hero-title {
+            margin-top: 30px;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            perspective: 1000px;
+        }
+
+        .hero-title span {
+            display: block;
+            background: linear-gradient(180deg, #fff 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rotate3D 6s infinite ease-in-out;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes rotate3D {
+            0%, 100% { transform: rotateY(-10deg) rotateX(5deg); }
+            50% { transform: rotateY(10deg) rotateX(-5deg); }
+        }
+
+        .ai-status {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--secondary-glow);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+
+        /* --- GLASSMORPHISM BUTTONS --- */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .glass-btn {
+            padding: 15px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.4s;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: white;
+        }
+
+        .glass-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- PREMIUM VIDEO SECTION --- */
+        .video-card {
+            width: 90%;
+            max-width: 700px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 10px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 60px;
+        }
+
+        .video-inner {
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            width: 100%;
+            padding: 40px;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid #111;
+        }
+
+        .footer-logo {
+            font-weight: 900;
+            letter-spacing: 20px;
+            color: #222;
+            transition: color 0.5s;
+        }
+
+        footer:hover .footer-logo { color: var(--primary-glow); }
+
+    </style>
+</head>
+<body>
+
+    <div class="mesh-bg"></div>
+
+    <div class="logo-wrapper">
+        <div class="pulse"></div>
+        <img src="https://drive.google.com/thumbnail?id=19OqeLqCrUzRukR86HAH9DnaFGeWECLJJ&sz=w500" alt="D" class="channel-logo">
+    </div>
+
+    <div class="ai-status" style="margin-top: 25px;">MANAGED BY GEMINI GOOGLE AI</div>
+
+    <h1 class="hero-title">
+        <span>D_MUSIC_OFFICIALS</span>
+    </h1>
+
+    <div class="btn-container">
+        <a href="https://youtube.com/@d_music_officials?sub_confirmation=1" class="glass-btn btn-primary">SUBSCRIBE</a>
+        <a href="https://youtube.com/@d_music_officials" class="glass-btn btn-secondary">VIEW CHANNEL</a>
+    </div>
+
+    <div class="video-card">
+        <div class="video-inner">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed?listType=user_uploads&list=d_music_officials" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 60px; opacity: 0.4; filter: grayscale(1);">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://youtube.com/@d_music_officials&bgcolor=050505&color=ffffff">
+    </div>
+
+    <footer>
+        <div class="footer-logo">MUSIC-D</div>
+    </footer>
+
+</body>
+</html>
